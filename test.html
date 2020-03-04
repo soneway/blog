@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>test</title>
+    <style>
+      .rhomboid {
+        width: 300px;
+        height: 200px;
+        background: #f00;
+        transform: skew(-30deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rhomboid"></div>
+
+    <script>
+      // 如何实现提案中的flat函数（参数为几就拆解几层数组）
+      Array.prototype._flat = function (level) {
+        function helper (array, level) {
+          const res = [];
+          array.forEach((item) => {
+            if (level > 0 && Array.isArray(item)) {
+              res.push(...helper(item, level - 1));
+            }
+            else {
+              res.push(item);
+            }
+          });
+          return res;
+        }
+
+        return helper(this, level);
+      };
+
+      // 2x1的地砖铺 nx2的地板
+    </script>
+  </body>
+</html>
