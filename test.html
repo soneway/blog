@@ -35,6 +35,37 @@
       };
 
       // 2x1的地砖铺 nx2的地板
+
+
+
+      function selectSort (nums) {
+        for (let i = 0; i < nums.length - 1; i++) {
+          for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] > nums[j]) {
+              [nums[i], nums[j]] = [nums[j], nums[i]];
+            }
+          }
+        }
+      }
+
+      function mergeSort (nums) {
+        if (nums.length <= 1) {
+          return nums;
+        }
+
+        let mid = ~~(nums.length / 2);
+
+        return mergeSortHelper(mergeSort(nums.slice(0, mid)), mergeSort(nums.slice(mid)));
+      }
+
+      function mergeSortHelper (left, right) {
+        const res = [];
+        while (left.length && right.length) {
+          // 不断比较left,right第一项, 取出较小的
+          left[0] < right[0] ? res.push(left.shift()) : res.push(right.shift());
+        }
+        return res.concat(left, right);
+      }
     </script>
   </body>
 </html>
