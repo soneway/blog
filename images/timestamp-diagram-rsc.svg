@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 245 116" height="438" width="924">
+  <title>Timing attributes defined by the PerformanceResourceTiming interface</title>
+  <defs>
+    <marker style="overflow:visible" id="arrowHead"
+       refX="0" refY="0" orient="auto">
+      <path transform="matrix(0.4,0,0,0.4,4,0)"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z" />
+    </marker>
+  </defs>
+  <g
+     transform="translate(-14,-115)">
+    <rect
+       y="167"
+       x="15.875"
+       height="29.10"
+       width="39.6875"
+       style="fill:#16d3e2;fill-opacity:1;stroke:#000000;stroke-width:0.53px;stroke-opacity:1" />
+    <rect
+       y="167"
+       x="58.208328"
+       height="29.10"
+       width="47.625004"
+       style="fill:#16d3e2;fill-opacity:1;stroke:#000000;stroke-width:0.53px;stroke-opacity:1" />
+    <rect
+       y="167"
+       x="108.47916"
+       height="29.10"
+       width="26.45834"
+       style="fill:#16d3e2;fill-opacity:1;stroke:#000000;stroke-width:0.53px;stroke-opacity:1" />
+    <rect
+       y="167"
+       x="137.58331"
+       height="29.102"
+       width="26.458342"
+       style="fill:#16d3e2;fill-opacity:1;stroke:#000000;stroke-width:0.53px;stroke-opacity:1" />
+    <rect
+       y="167"
+       x="166.68748"
+       height="29.10"
+       width="42.333344"
+       style="fill:#16d3e2;fill-opacity:1;stroke:#000000;stroke-width:0.53px;stroke-opacity:1" />
+    <rect
+       y="167"
+       x="209"
+       height="29.10"
+       width="47.625015"
+       style="fill:#16d3e2;fill-opacity:1;stroke:#000000;stroke-width:0.53px;stroke-opacity:1" />
+    <text
+       y="184"
+       x="23.926878"
+       style="font-style:normal;font-size:5.7px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="184"
+         x="23.926878"
+         >Redirect</tspan></text>
+    <text
+       y="183.4827"
+       x="68"
+       style="font-style:normal;font-size:5.7px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="183.4827"
+         x="68"
+         >AppCache</tspan></text>
+    <text
+       y="183.95813"
+       x="115.37762"
+       style="font-style:normal;font-size:5.7px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="183.95813"
+         x="115.37762"
+         >DNS</tspan></text>
+    <text
+       y="183.95813"
+       x="145.53459"
+       style="font-style:normal;font-size:5.7px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="183.95813"
+         x="145.53459"
+         >TCP</tspan></text>
+    <text
+       y="183.39038"
+       x="219"
+       style="font-style:normal;font-size:5.7px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="183.39038"
+         x="219"
+         >Response</tspan></text>
+    <text
+       y="183.39038"
+       x="176.24969"
+       style="font-style:normal;font-size:5.7px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="183.39038"
+         x="176.24969"
+         >Request</tspan></text>
+    <path
+       id="path4923"
+       d="M 15.875,164.70831 26.458333,119.72915 H 39.6875"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997"
+       d="M 18.520833,164.70831 29.10,130.31248 H 39.6875"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997-9"
+       d="m 55.562499,164.70831 2.645833,-23.8125 h 7.9375"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997-9-3"
+       d="m 58.208332,164.7083 2.645833,-10.58332 h 5.291667"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997-9-3-8"
+       d="m 108.47916,164.70831 7.9375,-47.625 H 127"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997-9-3-8-1"
+       d="m 134.9375,164.70831 7.9375,-37.04166 h 7.9375"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997-9-3-8-1-2"
+       d="m 137.58333,164.70831 7.9375,-26.45833 h 7.9375"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997-9-3-8-1-2-1"
+       d="m 140.22916,164.70831 7.9375,-15.875 h 7.9375"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997-9-3-8-1-2-1-2"
+       d="m 164.04166,199.10414 -26.45833,7.9375 H 111.125"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997-9-3-8-1-2-1-2-4"
+       d="m 166.6875,199.10414 -21.16667,18.52084 h -21.16667"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997-9-3-8-1-2-1-2-4-6"
+       d="M 209.02084,199.10415 198.4375,228.20831 H 166.68749"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <path
+       id="path4997-9-3-8-1-2-1-8"
+       d="m 256.64583,164.70831 -5.29167,-23.8125 h -2.64583"
+       style="fill:none;stroke:#000000;stroke-width:0.53px;stroke-opacity:1;marker-start:url(#arrowHead)" />
+    <text
+       y="121.93518"
+       x="42.333332"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan         
+         y="121.93518"
+         x="42.333332"
+         >startTime</tspan></text>
+    <text
+       y="132.27341"
+       x="42"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="132.27341"
+         x="42"
+         >(redirectStart)</tspan></text>
+    <text
+       y="142.85674"
+       x="68"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="142.85674"
+         x="68"
+         >(redirectEnd)</tspan></text>
+    <text
+       y="156.33101"
+       x="68.546547"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="156.33101"
+         x="68.546547"
+         >fetchStart</tspan></text>
+    <text
+       y="119.77957"
+       x="129.64583"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="119.77957"
+         x="129.64583"
+         >(domainLookupStart)</tspan></text>
+    <text
+       y="130.36292"
+       x="153.45833"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="130.36292"
+         x="153.45833"
+         >(domainLookupEnd)</tspan></text>
+    <text
+       y="140.70113"
+       x="156"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="140.70113"
+         x="156"
+         >(connectStart)</tspan></text>
+    <text
+       y="151"
+       x="158"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="151"
+         x="158"
+         >(secureConnectionStart)</tspan></text>
+    <text
+       y="141"
+       x="247"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;text-align:end;text-anchor:end;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="141"
+         x="247"
+         >responseEnd</tspan></text>
+    <text
+       y="207"
+       x="108"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;text-align:end;text-anchor:end;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="207"
+         x="108"
+         >(connectEnd)</tspan></text>
+    <text
+       y="217"
+       x="123"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;text-align:end;text-anchor:end;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="217"
+         x="123"
+         >(requestStart)</tspan></text>
+    <text
+       y="228"
+       x="164"
+       style="font-style:normal;font-size:5px;font-family:sans-serif;text-align:end;text-anchor:end;fill:#000000;fill-opacity:1;"
+       ><tspan
+         y="228"
+         x="164"
+         >(responseStart)</tspan></text>
+  </g>
+</svg>
