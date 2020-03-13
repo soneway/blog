@@ -67,27 +67,27 @@
         return res.concat(left, right);
       }
 
-      // 防抖: 多次调用, 运行1次
-      function debounce (fn, timeout = 300) {
-        return function (...args) {
-          clearTimeout(fn._tid);
-          fn._tid = setTimeout(() => {
-            fn.call(this, ...args);
-          }, timeout);
-        };
-      }
+// 防抖: 多次调用, 运行1次
+function debounce (fn, timeout = 300) {
+  return function (...args) {
+    clearTimeout(fn._tid);
+    fn._tid = setTimeout(() => {
+      fn.call(this, ...args);
+    }, timeout);
+  };
+}
 
-      // 节流: 多次调用, 每个时间间隔运行1次
-      function throttle (fn, timeout = 300) {
-        let start = Date.now();
-        return function (...args) {
-          const now = Date.now();
-          if (now - start >= timeout) {
-            fn.call(this, ...args);
-            start = now;
-          }
-        };
-      }
+// 节流: 多次调用, 每个时间间隔运行1次
+function throttle (fn, timeout = 300) {
+  let start = Date.now();
+  return function (...args) {
+    const now = Date.now();
+    if (now - start >= timeout) {
+      fn.call(this, ...args);
+      start = now;
+    }
+  };
+}
 
       // 柯里化
       function curry (fn, ...prevArgs) {
