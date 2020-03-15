@@ -10,10 +10,18 @@
         background: #f00;
         transform: skew(-30deg);
       }
+
+      div {
+        color: #f00;
+        background: #fff;
+      }
     </style>
   </head>
   <body>
-    <div class="rhomboid"></div>
+    <div
+      class="rhomboid"
+      style="text-align:center; text-indent: 20px;">
+    </div>
 
     <script>
       // 如何实现提案中的flat函数（参数为几就拆解几层数组）
@@ -161,6 +169,86 @@
           }
         }
       })();
+
+
+      // 构造函数
+      function Animal (name) {
+        this.name = name;
+        this.getName = function () {
+          return this.name;
+        };
+      }
+      var cat = new Animal('cat');
+
+      // 工厂
+      function Animal (name) {
+        const inst = {};
+        inst.name = name;
+        inst.getName = function () {
+          return inst.name;
+        };
+        return inst;
+      }
+      var cat = Animal('cat');
+
+      // 模块
+      var cat = (function () {
+        const name = 'cat';
+        function getName () {
+          return name;
+        }
+        return {
+          name,
+          getName,
+        };
+      })();
+
+      // 单例
+      const CatSingle = (function () {
+        let inst;
+
+        function init () {
+          return {};
+        }
+
+        return {
+          getInst: function () {
+            return inst || (inst = init());
+          },
+        };
+      })();
+      var cat = CatSingle.getInst();
+
+      // 观察者
+      class Subject {
+        constructor () {
+          this.observers = [];
+        }
+        add (observer) {
+          this.observers.push(observer);
+        }
+        notify () {
+          this.observers.forEach(observer => observer.update());
+        }
+      }
+
+      class Observer {
+        constructor (name) {
+          this.name = name;
+        }
+        update () {
+          console.log(`目标更新: ${this.name}`);
+        }
+      }
+
+      let sub = new Subject();
+      let ob = new Observer('haha');
+      // 添加观察者
+      sub.add(ob);
+      // 通知更新
+      sub.notify();
+
+
     </script>
   </body>
 </html>
