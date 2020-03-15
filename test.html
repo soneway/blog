@@ -147,6 +147,20 @@
           return this;
         }
       }
+
+      const scriptVar = 1;
+      window.globalVar = 1;
+      var globalVar2 = 1;
+      (function () {
+        const localVar = 1;
+        let localVar2 = 1;
+        if (1) {
+          const blockVar = 1;
+          if (1) {
+            const blockVar2 = 1;
+          }
+        }
+      })();
     </script>
   </body>
 </html>
