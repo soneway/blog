@@ -248,6 +248,22 @@
       // 通知更新
       sub.notify();
 
+      new Promise((resolve) => {
+        resolve(Promise.reject());
+      })
+        .then(() => console.log(1))
+        .catch(() => console.log(2));
+
+      function caculateDependency (input) {
+        const tasks = input.split(',').map((item) => item.split('->'));
+        const map = {};
+        const res = [];
+
+
+      }
+
+      console.log(caculateDependency('T1->T2,T2->T3,T2->T4,T3->T4,T4->T5,T6'));
+
 
     </script>
   </body>
