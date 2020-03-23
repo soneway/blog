@@ -254,15 +254,78 @@
         .then(() => console.log(1))
         .catch(() => console.log(2));
 
+      /**
+       * 求并行计算任务之间的计算顺序
+       * @param input
+       * @returns {[]}
+       */
       function caculateDependency (input) {
         const tasks = input.split(',').map((item) => item.split('->'));
-        const map = {};
+        // 输入不合法
+        if (tasks.length === 0) {
+          throw new Error('Error,invalid input');
+        }
+
+        function getInTasks (map) {
+          const tasks = [];
+          Object.keys(map).forEach((key) => {
+            const nextes = map[key];
+            if (nextes.length === 0) {
+              tasks.push(key);
+              delete map[key];
+            }
+          });
+          return tasks;
+        }
+
+        // 依赖字典
+        const depMap = {};
+        // key正则
+        const keyReg = /T\d/;
+        for (let i = 0; i < tasks.length; i++) {
+          const [cur, next] = tasks[i];
+          // 输入的key不合法
+          if (!keyReg.test(cur)) {
+            throw new Error('Error,invalid input');
+          }
+          const array = depMap[cur] || (depMap[cur] = []);
+          if (next) {
+            array.push(next);
+            // next也初始化一个数组
+            if (depMap[next] === undefined) {
+              depMap[next] = [];
+            }
+          }
+        }
+
+        const copyMap = JSON.parse(JSON.stringify(depMap));
+        let inTasks = getInTasks(copyMap);
+        // 没有入口
+        if (inTasks.length === 0) {
+          throw new Error('Error, circular dependencies');
+        }
+
         const res = [];
+        while (inTasks.length) {
+          res.push(...inTasks.sort());
+          inTasks.forEach((task) => {
+            Object.keys(copyMap).forEach((key) => {
+              const nextes = copyMap[key];
+              const index = nextes.indexOf(task);
+              if (index !== -1) {
+                // 去掉上一轮入口任务
+                nextes.splice(index, 1);
+              }
+            });
+          });
+          inTasks = getInTasks(copyMap);
+        }
 
-
+        return res;
       }
 
       console.log(caculateDependency('T1->T2,T2->T3,T2->T4,T3->T4,T4->T5,T6'));
+      console.log(caculateDependency('T1->T2,T2->T3,T3->T1'));
 
 
     </script>
