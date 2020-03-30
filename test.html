@@ -24,308 +24,486 @@
     </div>
 
     <script>
-      // 如何实现提案中的flat函数（参数为几就拆解几层数组）
-      Array.prototype._flat = function (level) {
-        function helper (array, level) {
-          const res = [];
-          array.forEach((item) => {
-            if (level > 0 && Array.isArray(item)) {
-              res.push(...helper(item, level - 1));
-            }
-            else {
-              res.push(item);
-            }
-          });
-          return res;
-        }
+      // // 如何实现提案中的flat函数（参数为几就拆解几层数组）
+      // Array.prototype._flat = function (level) {
+      //   function helper (array, level) {
+      //     const res = [];
+      //     array.forEach((item) => {
+      //       if (level > 0 && Array.isArray(item)) {
+      //         res.push(...helper(item, level - 1));
+      //       }
+      //       else {
+      //         res.push(item);
+      //       }
+      //     });
+      //     return res;
+      //   }
+      //
+      //   return helper(this, level);
+      // };
+      //
+      // // 2x1的地砖铺 nx2的地板
+      //
+      //
+      //
+      // function selectSort (nums) {
+      //   for (let i = 0; i < nums.length - 1; i++) {
+      //     for (let j = i + 1; j < nums.length; j++) {
+      //       if (nums[i] > nums[j]) {
+      //         [nums[i], nums[j]] = [nums[j], nums[i]];
+      //       }
+      //     }
+      //   }
+      // }
+      //
+      // function mergeSort (nums) {
+      //   if (nums.length <= 1) {
+      //     return nums;
+      //   }
+      //
+      //   let mid = ~~(nums.length / 2);
+      //
+      //   return mergeSortHelper(mergeSort(nums.slice(0, mid)), mergeSort(nums.slice(mid)));
+      // }
+      //
+      // function mergeSortHelper (left, right) {
+      //   const res = [];
+      //   while (left.length && right.length) {
+      //     // 不断比较left,right第一项, 取出较小的
+      //     left[0] < right[0] ? res.push(left.shift()) : res.push(right.shift());
+      //   }
+      //   return res.concat(left, right);
+      // }
+      //
+      // // 防抖: 多次调用, 运行1次
+      // function debounce (fn, timeout = 300) {
+      //   return function (...args) {
+      //     clearTimeout(fn._tid);
+      //     fn._tid = setTimeout(() => {
+      //       fn.call(this, ...args);
+      //     }, timeout);
+      //   };
+      // }
+      //
+      // // 节流: 多次调用, 每个时间间隔运行1次
+      // function throttle (fn, timeout = 300) {
+      //   let start = Date.now();
+      //   return function (...args) {
+      //     const now = Date.now();
+      //     if (now - start >= timeout) {
+      //       fn.call(this, ...args);
+      //       start = now;
+      //     }
+      //   };
+      // }
+      //
+      // // 柯里化
+      // function curry (fn, ...prevArgs) {
+      //   return function (...args) {
+      //     const newArgs = [...prevArgs, ...args];
+      //     // 参数数量不足
+      //     if (newArgs.length < fn.length) {
+      //       return curry(fn, ...newArgs);
+      //     }
+      //     else {
+      //       return fn(...newArgs);
+      //     }
+      //   };
+      // }
+      //
+      // function toCurryLog (a, b, c) {
+      //   console.log(`${a},${b},${c}`);
+      // }
+      //
+      // const curryLog = curry(toCurryLog);
+      // curryLog(1)(2, 3);
+      //
+      // class EventEmitter {
+      //   constructor () {
+      //     this.events = {};
+      //   }
+      //
+      //   on (type, fn) {
+      //     const typeFns = this.events[type] || (this.events[type] = []);
+      //     typeFns.push(fn);
+      //     return this;
+      //   }
+      //
+      //   once (type, fn) {
+      //     const tmpFn = (...args) => {
+      //       fn.call(this, ...args);
+      //       this.off(type, tmpFn);
+      //     };
+      //     this.on(type, tmpFn);
+      //     return this;
+      //   }
+      //
+      //   emit (type, ...args) {
+      //     const typeFns = this.events[type] || [];
+      //     typeFns.forEach((fn) => fn.call(this, ...args));
+      //     return this;
+      //   }
+      //
+      //   off (type, fn) {
+      //     if (fn === undefined) {
+      //       this.events[type] = null;
+      //     }
+      //     else {
+      //       const typeFns = this.events[type] || [];
+      //       typeFns.splice(typeFns.indexOf(fn), 1);
+      //     }
+      //     return this;
+      //   }
+      // }
+      //
+      // const scriptVar = 1;
+      // window.globalVar = 1;
+      // var globalVar2 = 1;
+      // (function () {
+      //   const localVar = 1;
+      //   let localVar2 = 1;
+      //   if (1) {
+      //     const blockVar = 1;
+      //     if (1) {
+      //       const blockVar2 = 1;
+      //     }
+      //   }
+      // })();
+      //
+      //
+      // // 构造函数
+      // function Animal (name) {
+      //   this.name = name;
+      //   this.getName = function () {
+      //     return this.name;
+      //   };
+      // }
+      // var cat = new Animal('cat');
+      //
+      // // 工厂
+      // function Animal (name) {
+      //   const inst = {};
+      //   inst.name = name;
+      //   inst.getName = function () {
+      //     return inst.name;
+      //   };
+      //   return inst;
+      // }
+      // var cat = Animal('cat');
+      //
+      // // 模块
+      // var cat = (function () {
+      //   const name = 'cat';
+      //   function getName () {
+      //     return name;
+      //   }
+      //   return {
+      //     name,
+      //     getName,
+      //   };
+      // })();
+      //
+      // // 单例
+      // const CatSingle = (function () {
+      //   let inst;
+      //
+      //   function init () {
+      //     return {};
+      //   }
+      //
+      //   return {
+      //     getInst: function () {
+      //       return inst || (inst = init());
+      //     },
+      //   };
+      // })();
+      // var cat = CatSingle.getInst();
+      //
+      // // 观察者
+      // class Subject {
+      //   constructor () {
+      //     this.observers = [];
+      //   }
+      //   add (observer) {
+      //     this.observers.push(observer);
+      //   }
+      //   notify () {
+      //     this.observers.forEach(observer => observer.update());
+      //   }
+      // }
+      //
+      // class Observer {
+      //   constructor (name) {
+      //     this.name = name;
+      //   }
+      //   update () {
+      //     console.log(`目标更新: ${this.name}`);
+      //   }
+      // }
+      //
+      // let sub = new Subject();
+      // let ob = new Observer('haha');
+      // // 添加观察者
+      // sub.add(ob);
+      // // 通知更新
+      // sub.notify();
+      //
+      // new Promise((resolve) => {
+      //   resolve(Promise.reject());
+      // })
+      //   .then(() => console.log(1))
+      //   .catch(() => console.log(2));
+      //
+      // /**
+      //  * 求并行计算任务之间的计算顺序
+      //  * @param input
+      //  * @returns {[]}
+      //  */
+      // function caculateDependency (input) {
+      //   const tasks = input.split(',').map((item) => item.split('->'));
+      //   // 输入不合法
+      //   if (tasks.length === 0) {
+      //     throw new Error('Error,invalid input');
+      //   }
+      //
+      //   function getInTasks (map) {
+      //     const tasks = [];
+      //     Object.keys(map).forEach((key) => {
+      //       const nextes = map[key];
+      //       if (nextes.length === 0) {
+      //         tasks.push(key);
+      //         delete map[key];
+      //       }
+      //     });
+      //     return tasks;
+      //   }
+      //
+      //   // 依赖字典
+      //   const depMap = {};
+      //   // key正则
+      //   const keyReg = /T\d/;
+      //   for (let i = 0; i < tasks.length; i++) {
+      //     const [cur, next] = tasks[i];
+      //     // 输入的key不合法
+      //     if (!keyReg.test(cur)) {
+      //       throw new Error('Error,invalid input');
+      //     }
+      //     const array = depMap[cur] || (depMap[cur] = []);
+      //     if (next) {
+      //       array.push(next);
+      //       // next也初始化一个数组
+      //       if (depMap[next] === undefined) {
+      //         depMap[next] = [];
+      //       }
+      //     }
+      //   }
+      //
+      //   const copyMap = JSON.parse(JSON.stringify(depMap));
+      //   let inTasks = getInTasks(copyMap);
+      //   // 没有入口
+      //   if (inTasks.length === 0) {
+      //     throw new Error('Error, circular dependencies');
+      //   }
+      //
+      //   const res = [];
+      //   while (inTasks.length) {
+      //     res.push(...inTasks.sort());
+      //     inTasks.forEach((task) => {
+      //       Object.keys(copyMap).forEach((key) => {
+      //         const nextes = copyMap[key];
+      //         const index = nextes.indexOf(task);
+      //         if (index !== -1) {
+      //           // 去掉上一轮入口任务
+      //           nextes.splice(index, 1);
+      //         }
+      //       });
+      //     });
+      //     inTasks = getInTasks(copyMap);
+      //   }
+      //
+      //   return res;
+      // }
+      //
+      // console.log(caculateDependency('T1->T2,T2->T3,T2->T4,T3->T4,T4->T5,T6'));
+      // console.log(caculateDependency('T1->T2,T2->T3,T3->T1'));
 
-        return helper(this, level);
-      };
+      const PENDING = 'pending';
+      const FULFILLED = 'fulfilled';
+      const REJECTED = 'rejected';
 
-      // 2x1的地砖铺 nx2的地板
+      class _Promise {
+        constructor (executor) {
+          this._status = PENDING;
+          this._value = undefined;
+          this._resolves = [];
+          this._rejects = [];
 
-
-
-      function selectSort (nums) {
-        for (let i = 0; i < nums.length - 1; i++) {
-          for (let j = i + 1; j < nums.length; j++) {
-            if (nums[i] > nums[j]) {
-              [nums[i], nums[j]] = [nums[j], nums[i]];
-            }
-          }
-        }
-      }
-
-      function mergeSort (nums) {
-        if (nums.length <= 1) {
-          return nums;
-        }
-
-        let mid = ~~(nums.length / 2);
-
-        return mergeSortHelper(mergeSort(nums.slice(0, mid)), mergeSort(nums.slice(mid)));
-      }
-
-      function mergeSortHelper (left, right) {
-        const res = [];
-        while (left.length && right.length) {
-          // 不断比较left,right第一项, 取出较小的
-          left[0] < right[0] ? res.push(left.shift()) : res.push(right.shift());
-        }
-        return res.concat(left, right);
-      }
-
-      // 防抖: 多次调用, 运行1次
-      function debounce (fn, timeout = 300) {
-        return function (...args) {
-          clearTimeout(fn._tid);
-          fn._tid = setTimeout(() => {
-            fn.call(this, ...args);
-          }, timeout);
-        };
-      }
-
-      // 节流: 多次调用, 每个时间间隔运行1次
-      function throttle (fn, timeout = 300) {
-        let start = Date.now();
-        return function (...args) {
-          const now = Date.now();
-          if (now - start >= timeout) {
-            fn.call(this, ...args);
-            start = now;
-          }
-        };
-      }
-
-      // 柯里化
-      function curry (fn, ...prevArgs) {
-        return function (...args) {
-          const newArgs = [...prevArgs, ...args];
-          // 参数数量不足
-          if (newArgs.length < fn.length) {
-            return curry(fn, ...newArgs);
-          }
-          else {
-            return fn(...newArgs);
-          }
-        };
-      }
-
-      function toCurryLog (a, b, c) {
-        console.log(`${a},${b},${c}`);
-      }
-
-      const curryLog = curry(toCurryLog);
-      curryLog(1)(2, 3);
-
-      class EventEmitter {
-        constructor () {
-          this.events = {};
-        }
-
-        on (type, fn) {
-          const typeFns = this.events[type] || (this.events[type] = []);
-          typeFns.push(fn);
-          return this;
-        }
-
-        once (type, fn) {
-          const tmpFn = (...args) => {
-            fn.call(this, ...args);
-            this.off(type, tmpFn);
-          };
-          this.on(type, tmpFn);
-          return this;
-        }
-
-        emit (type, ...args) {
-          const typeFns = this.events[type] || [];
-          typeFns.forEach((fn) => fn.call(this, ...args));
-          return this;
-        }
-
-        off (type, fn) {
-          if (fn === undefined) {
-            this.events[type] = null;
-          }
-          else {
-            const typeFns = this.events[type] || [];
-            typeFns.splice(typeFns.indexOf(fn), 1);
-          }
-          return this;
-        }
-      }
-
-      const scriptVar = 1;
-      window.globalVar = 1;
-      var globalVar2 = 1;
-      (function () {
-        const localVar = 1;
-        let localVar2 = 1;
-        if (1) {
-          const blockVar = 1;
-          if (1) {
-            const blockVar2 = 1;
-          }
-        }
-      })();
-
-
-      // 构造函数
-      function Animal (name) {
-        this.name = name;
-        this.getName = function () {
-          return this.name;
-        };
-      }
-      var cat = new Animal('cat');
-
-      // 工厂
-      function Animal (name) {
-        const inst = {};
-        inst.name = name;
-        inst.getName = function () {
-          return inst.name;
-        };
-        return inst;
-      }
-      var cat = Animal('cat');
-
-      // 模块
-      var cat = (function () {
-        const name = 'cat';
-        function getName () {
-          return name;
-        }
-        return {
-          name,
-          getName,
-        };
-      })();
-
-      // 单例
-      const CatSingle = (function () {
-        let inst;
-
-        function init () {
-          return {};
-        }
-
-        return {
-          getInst: function () {
-            return inst || (inst = init());
-          },
-        };
-      })();
-      var cat = CatSingle.getInst();
-
-      // 观察者
-      class Subject {
-        constructor () {
-          this.observers = [];
-        }
-        add (observer) {
-          this.observers.push(observer);
-        }
-        notify () {
-          this.observers.forEach(observer => observer.update());
-        }
-      }
-
-      class Observer {
-        constructor (name) {
-          this.name = name;
-        }
-        update () {
-          console.log(`目标更新: ${this.name}`);
-        }
-      }
-
-      let sub = new Subject();
-      let ob = new Observer('haha');
-      // 添加观察者
-      sub.add(ob);
-      // 通知更新
-      sub.notify();
-
-      new Promise((resolve) => {
-        resolve(Promise.reject());
-      })
-        .then(() => console.log(1))
-        .catch(() => console.log(2));
-
-      /**
-       * 求并行计算任务之间的计算顺序
-       * @param input
-       * @returns {[]}
-       */
-      function caculateDependency (input) {
-        const tasks = input.split(',').map((item) => item.split('->'));
-        // 输入不合法
-        if (tasks.length === 0) {
-          throw new Error('Error,invalid input');
-        }
-
-        function getInTasks (map) {
-          const tasks = [];
-          Object.keys(map).forEach((key) => {
-            const nextes = map[key];
-            if (nextes.length === 0) {
-              tasks.push(key);
-              delete map[key];
-            }
-          });
-          return tasks;
-        }
-
-        // 依赖字典
-        const depMap = {};
-        // key正则
-        const keyReg = /T\d/;
-        for (let i = 0; i < tasks.length; i++) {
-          const [cur, next] = tasks[i];
-          // 输入的key不合法
-          if (!keyReg.test(cur)) {
-            throw new Error('Error,invalid input');
-          }
-          const array = depMap[cur] || (depMap[cur] = []);
-          if (next) {
-            array.push(next);
-            // next也初始化一个数组
-            if (depMap[next] === undefined) {
-              depMap[next] = [];
-            }
-          }
-        }
-
-        const copyMap = JSON.parse(JSON.stringify(depMap));
-        let inTasks = getInTasks(copyMap);
-        // 没有入口
-        if (inTasks.length === 0) {
-          throw new Error('Error, circular dependencies');
-        }
-
-        const res = [];
-        while (inTasks.length) {
-          res.push(...inTasks.sort());
-          inTasks.forEach((task) => {
-            Object.keys(copyMap).forEach((key) => {
-              const nextes = copyMap[key];
-              const index = nextes.indexOf(task);
-              if (index !== -1) {
-                // 去掉上一轮入口任务
-                nextes.splice(index, 1);
+          const resolve = (value) => {
+            const run = () => {
+              if (this._status !== PENDING) {
+                return;
               }
+
+              this._status = FULFILLED;
+              this._value = value;
+
+              while (this._resolves.length) {
+                const callback = this._resolves.shift();
+                callback(value);
+              }
+            };
+            setTimeout(run);
+          };
+
+          const reject = (value) => {
+            const run = () => {
+              if (this._status !== PENDING) {
+                return;
+              }
+
+              this._status = REJECTED;
+              this._value = value;
+
+              while (this._rejects.length) {
+                const callback = this._rejects.unshift();
+                callback(value);
+              }
+            };
+            setTimeout(run);
+          };
+
+          // 初始化时, 立即执行executor
+          executor(resolve, reject);
+        }
+
+        then (resolveFn, rejectFn) {
+          if (typeof resolveFn !== 'function') {
+            resolveFn = (value) => value;
+          }
+          if (typeof rejectFn !== 'function') {
+            rejectFn = (reason) => {
+              throw new Error(reason instanceof Error ? reason.message : reason);
+            };
+          }
+
+          return new _Promise((resolve, reject) => {
+            const fulfilled = (val) => {
+              try {
+                const res = resolveFn(val);
+                res instanceof _Promise ? res.then(resolve, reject) : resolve(res);
+              }
+              catch (e) {
+                reject(e);
+              }
+            };
+
+            const rejected = (err) => {
+              try {
+                let res = rejectFn(err);
+                res instanceof _Promise ? res.then(resolve, reject) : resolve(res);
+              }
+              catch (e) {
+                reject(e);
+              }
+            };
+
+            switch (this._status) {
+              case PENDING: {
+                this._resolves.push(fulfilled);
+                this._rejects.push(rejected);
+                break;
+              }
+              // 状态为FULFILLED/REJECTED时, 直接执行then回调
+              case FULFILLED: {
+                fulfilled(this._value);
+                break;
+              }
+              case REJECTED: {
+                rejected(this._value);
+                break;
+              }
+            }
+          });
+        }
+
+        catch (rejectFn) {
+          return this.then(undefined, rejectFn);
+        }
+
+        finally (callback) {
+          return this.then(
+            value => _Promise.resolve(callback()).then(() => value),
+            reason => _Promise.resolve(callback()).then(() => {throw reason;}),
+          );
+        }
+
+        static resolve (value) {
+          return value instanceof _Promise ? value : new _Promise((resolve) => resolve(value));
+        }
+
+        static reject (reason) {
+          return new _Promise((_, reject) => reject(reason));
+        }
+
+        static all (promises) {
+          let count;
+          const res = [];
+
+          return new _Promise((resolve, reject) => {
+            promises.forEach((promise, index) => {
+              _Promise.resolve(promise).then(
+                (value) => {
+                  count++;
+                  res[index] = value;
+                  if (count === promises.length) {
+                    resolve(res);
+                  }
+                },
+                (error) => {
+                  reject(error);
+                },
+              );
             });
           });
-          inTasks = getInTasks(copyMap);
         }
 
-        return res;
+        static race (promises) {
+          return new _Promise((resolve, reject) => {
+            for (let promise of promises) {
+              _Promise.resolve(promise).then(
+                (value) => {
+                  resolve(value);
+                },
+                (error) => {
+                  reject(error);
+                },
+              );
+            }
+          });
+        }
       }
 
-      console.log(caculateDependency('T1->T2,T2->T3,T2->T4,T3->T4,T4->T5,T6'));
-      console.log(caculateDependency('T1->T2,T2->T3,T3->T1'));
+      new _Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(1);
+        }, 500);
+      })
+        .then(res => {
+          console.log(res);
+          return new _Promise((resolve) => {
+            setTimeout(() => {
+              resolve(2);
+            }, 1000);
+          });
+        })
+        .then(res => {
+          console.log(res);
+          return 3;
+        })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(console.log);
 
 
     </script>
