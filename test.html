@@ -11,17 +11,32 @@
         transform: skew(-30deg);
       }
 
-      div {
-        color: #f00;
-        background: #fff;
+      .tixing {
+        width: 300px;
+        height: 300px;
+        background: #f00;
+        transform: rotateX(50deg);
+        /*transform-origin: bottom center;*/
+      }
+
+      .sanjiao {
+        width: 0;
+        height: 0;
+        border: 100px transparent solid;
+        border-bottom-color: #f00;
       }
     </style>
   </head>
   <body>
     <div
-      class="rhomboid"
-      style="text-align:center; text-indent: 20px;">
+      class="rhomboid">
     </div>
+
+    <div style="perspective: 900px;">
+      <div class="tixing"></div>
+    </div>
+
+    <div class="sanjiao"></div>
 
     <script>
       // // 如何实现提案中的flat函数（参数为几就拆解几层数组）
